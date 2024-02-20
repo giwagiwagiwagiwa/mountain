@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>路線</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <header>
+    <h1>Travel</h1>
+    <div class="header-list">
+    <ul>
+      <li><%= link_to "すべての投稿",trains_path %></li>
+      <li><%= link_to "検索ホーム", trains_search_path %></li>
+      <li><%= link_to "新規投稿",trains_new_path %></li>
+    </ul>
+    </div>
+   </header>
+   <main>
+    <%= yield %>
+   </main>
+  </body>
+
+</html>

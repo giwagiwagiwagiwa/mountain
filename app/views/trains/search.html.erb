@@ -1,0 +1,57 @@
+<div class="search">
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"trains",action:"search"}, method: :get) do %>
+   <p>出発地</p>
+   <%= text_field_tag :search1 %>
+   <p>目的地</p>
+   <%= text_field_tag :search2 %>
+   <br>
+   <%= submit_tag '検索する'  %>
+<% end %>
+<%= link_to "新規投稿ページへ", trains_new_path %>
+</div>
+
+<div class="trains-container">
+  <% @trains.each do |t| %>
+    <div class="train">
+    <div class="main-box">
+     <div class="left-container">
+      <%= t.user.email %>
+      <%= t.departure %>
+      <%= t.arrival %>
+      <%= t.detail %>
+      <%= t.expense2 %>
+      <%= t.time2 %>
+      <%= t.other2 %>
+
+      <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+         <%= link_to train_like_path(id: t.id, train_id: t.id), method: :delete do %>
+             <p>いいねを取り消す</p><%= t.likes.count %>
+         <% end %>
+      <% else %>
+         <%= link_to train_likes_path(id: t.id, train_id: t.id), method: :post do %>
+             <p>いいね</p><%= t.likes.count %>
+         <% end %>
+     <% end %>
+     <% else %>
+      <p>いいねの数 = </p><%= t.likes.count %>
+     <% end %>
+
+     <% if user_signed_in? && current_user.id == t.user_id %>
+     <%= link_to "編集する", edit_train_path(t.id) %>
+     <%= link_to "削除する", train_path(t.id), method: :delete %>
+     <% end %> 
+     
+     <%= link_to "詳細へ", train_path(t.id) %>
+      <%= link_to "編集する", edit_train_path(t.id) %>
+     </div>
+    
+     <div class="right-container">
+      <%= t.created_at %>
+      <%= button_to "削除する", train_path(t.id), method: :delete %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

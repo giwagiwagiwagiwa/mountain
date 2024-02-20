@@ -1,0 +1,29 @@
+<%= form_for @trains do |f| %>
+  <div class="field">
+   <br>
+    <%= f.label :出発地 %>
+    <%= f.text_field :departure, :size => 30 %> 
+    <br>
+    <br>
+    <%= f.label :目的地 %>
+    <%= f.text_field :arrival, :size => 30 %> 
+    <br>
+    <br>
+    <%= f.label :具体的な経路、手段 %>
+    <%= f.text_field :detail, :size => 30 %> 
+    <br>
+    <br>
+    <%= f.label :費用 %>
+    <%= f.text_field :expense2 :size => 30 %> 
+    <br>
+    <br>
+    <%= f.label :時間 %>
+    <%= f.text_field :time2, :size => 30 %> 
+    <br>
+    <br>
+    <%= f.label :その他 %>
+    <%= f.text_field :other2, :size => 30 %> 
+    <br>
+    <%= f.submit "確定" %>
+ </div>
+<% end %>

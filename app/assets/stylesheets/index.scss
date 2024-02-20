@@ -1,0 +1,32 @@
+.trains-container {
+    width: 50%;
+    margin: 10px auto;
+  }
+  p {
+    width: 100px;
+    margin: 30px auto;
+    text-align: center;
+  }
+ .search{
+    justify-content: center;
+    text-align: center;
+ }
+  .train {
+    border-top: solid #00acee;
+    margin-top: 10px;
+    padding-top: 20px;
+  }
+  .main-box {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+  }
+  .right-container{
+    justify-content: right;
+    text-align: right;
+  }
+  .time {
+    display: flex;
+    justify-content: flex-end;
+  }

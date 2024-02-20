@@ -1,0 +1,53 @@
+<h1>投稿</h1>
+<h3>投稿詳細</h3>
+<div class="train">
+  <p><%= @trains.departure %></p>
+  <p><%= @trains.arrival %></p>
+  <p><%= @trains.detail %></p>
+  <p><%= @trains.expense2 %></p>
+  <p><%= @trains.time2 %></p>
+  <p><%= @trains.other2 %></p>
+  <p><%= @trains.created_at %></p>
+  <% if user_signed_in? %>
+  <% if current_user.already_liked?(@trains) %>
+    <%= link_to train_like_path(@trains), method: :delete do %>
+      <p>いいねを取り消す</p><%= @trains.likes.count %>
+      <% end %>
+      <% else %>
+        <%= link_to train_likes_path(@trains), method: :post do %>
+          <p>いいね</p><%= @trains.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>いいねの数 = </p><%= @trains.likes.count %>
+    <% end %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @trains.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@trains, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "Tweet一覧に戻る", trains_index_path %>
+<%= link_to "編集する", edit_train_path(@trains.id) %>
